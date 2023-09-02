@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Articles from "./pages/Articles";
 import Us from "./pages/Us";
 import Login from "./pages/Login";
+import MyPage from "./pages/MyPage";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -32,6 +33,7 @@ function App() {
           <Route path="/articles" element={<Articles />} />
           <Route path="/us" element={<Us />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
         <Footer />
       </div>

@@ -1,8 +1,18 @@
 import styled from "styled-components";
 import logoTitleImg from "../images/logo_title.png";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase_config";
+import { useState, useEffect } from "react";
 
 function Header() {
+  const [isLogined, setIsLogined] = useState(
+    localStorage.getItem("incourse_islogined") === "true"
+  );
+
+  useEffect(() => {
+    setIsLogined(localStorage.getItem("incourse_islogined") === "true");
+  }, []);
+
   return (
     <WholeDiv>
       <div className="logodiv">
@@ -15,11 +25,30 @@ function Header() {
           <div className="menuli">소개</div>
         </Link>
         <Link to={"/articles"}>
-          <div className="menuli">트랙레터</div>
+          <div className="menuli">서킷 레터</div>
         </Link>
-        <Link to={"/login"}>
-          <div className="menuli">로그인</div>
-        </Link>
+        {!isLogined && (
+          <Link to={"/login"}>
+            <div className="menuli">로그인</div>
+          </Link>
+        )}
+        {isLogined && (
+          <Link to={"/mypage"}>
+            <div className="menuli">마이 페이지</div>
+          </Link>
+        )}
+        {isLogined && (
+          <div
+            onClick={() => {
+              auth.signOut();
+              localStorage.setItem("incourse_islogined", "false");
+              setIsLogined(false);
+            }}
+            className="menuli"
+          >
+            로그아웃
+          </div>
+        )}
       </div>
     </WholeDiv>
   );
@@ -55,7 +84,7 @@ const WholeDiv = styled.div`
 
     .menuli {
       display: flex;
-      width: 100px;
+      padding: 0 20px;
       justify-content: center;
       color: white;
     }
