@@ -24,9 +24,9 @@ function Header() {
         <Link to={"/us"}>
           <div className="menuli">소개</div>
         </Link>
-        <Link to={"/articles"}>
+        {/* <Link to={"/articles"}>
           <div className="menuli">서킷 레터</div>
-        </Link>
+        </Link> */}
         {!isLogined && (
           <Link to={"/login"}>
             <div className="menuli">로그인</div>
@@ -62,6 +62,7 @@ const WholeDiv = styled.div`
   align-items: center;
   background: #d80600;
   height: 50px;
+  font-family: Pretendard Variable;
 
   a {
     text-decoration: none;
